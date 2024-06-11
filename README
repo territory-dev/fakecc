@@ -1,0 +1,55 @@
+fakecc is a build sniffing tool similar to Bear, focusing on generating `compile_commands.json`
+with minimal work.
+
+Usage
+=====
+
+run <command> <arguments...>
+    Run command and save captured compiler calls to `compiler_commands.json`.
+    Equivalent to:
+
+        eval $( fakecc install )
+        fakecc start
+
+        # run commands to sniff
+        cc file.cc -o file.o
+
+        fakecc dump
+        fakecc stop
+
+
+install
+    Create fake command symlinks in a temporary directory.
+
+start
+    Start the fakecc collection daemon.
+
+stop
+    Stop the fakecc collection daemon.
+
+dump
+    Write captured compiler calls to `compiler_commands.json`.
+
+
+Configuration
+=============
+
+Capture behaviour can be configured via environment variables:
+
+variable name       default             format             meaning
+------------------- ------------------- ------------------ ----------------------------------------
+FAKECC_SOCK         ./fakecc.sock       Path               Location of unix domain socket used by
+                                                           fakecc collection daemon.
+------------------- ------------------- ------------------ ----------------------------------------
+FAKECC_PASS                             List of patterns¹  Pass through to clang (compile) without
+                                                           recording.
+------------------- ------------------- ------------------ ----------------------------------------
+FAKECC_PASS_REC                         List of patterns¹  Pass through to clang and record.
+------------------- ------------------- ------------------ ----------------------------------------
+FAKECC_NOOP_PROGS                       Comma-separated    Make the commands do nothing and return
+                                        list of binaries   0.
+------------------- ------------------- ------------------ ----------------------------------------
+FAKECC_CLANG_PATH   determined by $PATH Path               Location of the real clang binary.
+------------------- ------------------- ------------------ ----------------------------------------
+
+¹ Comma-separated list of patterns to match using Python's fnmatch function
