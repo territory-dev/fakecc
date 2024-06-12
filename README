@@ -19,7 +19,8 @@ run <command> <arguments...>
 
 
 install
-    Create fake command symlinks in a temporary directory.
+    Create fake command symlinks in a temporary directory.  Outputs shell commands
+    to set the environment up for capture.
 
 start
     Start the fakecc collection daemon.
@@ -27,8 +28,8 @@ start
 stop
     Stop the fakecc collection daemon.
 
-dump
-    Write captured compiler calls to `compiler_commands.json`.
+dump <file>
+    Write captured compiler calls to file.
 
 
 Configuration
