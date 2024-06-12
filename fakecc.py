@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+'''
+fakecc is a build sniffing tool similar to Bear, focusing on generating
+`compile_commands.json` with minimal work.
+'''
+
+__version__ = '0.1'
 
 import atexit
 from fnmatch import fnmatch
@@ -260,14 +266,14 @@ def clang_main(prog_name, args):
             return clang_passthrough(args)
 
 
-def main(argv):
+def main(argv=argv):
     prog_name = Path(argv[0]).name
     args = argv[1:]
     if not args:
         exit(f'{prog_name}: missing command')
-    elif prog_name in ('clang', 'clang++', 'cc'):
+    elif prog_name in compiler_bins:
         clang_main(prog_name, args)
-    elif prog_name == 'fakecc.py':
+    elif prog_name in ['fakecc.py', 'fakecc']:
         cmd_main(prog_name, args)
     elif prog_name in all_noop_bins:
         if prog_name not in enabled_noop_progs:

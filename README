@@ -49,7 +49,7 @@ FAKECC_PASS_REC                         List of patterns¹  Pass through to clan
 FAKECC_NOOP_PROGS                       Comma-separated    Make the commands do nothing and return
                                         list of binaries   0.
 ------------------- ------------------- ------------------ ----------------------------------------
-FAKECC_CLANG_PATH   determined by $PATH Path               Location of the real clang binary.
+FAKECC_CLANG_PATH   looked up in $PATH  Path               Location of the real clang binary.
 ------------------- ------------------- ------------------ ----------------------------------------
 
 ¹ Comma-separated list of patterns to match using Python's fnmatch function
