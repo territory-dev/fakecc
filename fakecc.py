@@ -238,7 +238,6 @@ def communicate_clang_compile_command(prog_name, args, do_compile=False):
     j = json.loads(s.rstrip(', \n'))
     if not do_compile:
         j['arguments'].remove('-fdriver-only')
-    j['arguments'][0] = prog_name
     ccp.unlink(missing_ok=True)
     os.rmdir(d)
     return j
